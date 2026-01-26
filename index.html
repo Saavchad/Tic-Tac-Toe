@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TIC‑TAC‑TOE</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <!-- Welcome / Title -->
+      <header class="welcome">
+        <h1 class="bounce-title" aria-hidden="true">
+          <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span
+          ><span>M</span><span>E</span> <span>T</span><span>O</span>
+          <span>E</span><span>A</span><span>S</span><span>Y</span><span>M</span
+          ><span>O</span><span>D</span><span>E</span>
+        </h1>
+      </header>
+
+      <!-- Player pick -->
+      <section class="player-select" aria-label="Player selection">
+        <p class="select-label">Choose your side:</p>
+        <div class="select-buttons">
+          <button id="pick-x" class="pick-btn" type="button">Player X</button>
+          <button id="pick-o" class="pick-btn" type="button">Player O</button>
+        </div>
+      </section>
+
+      <!-- Game board -->
+      <main class="board-area" aria-label="Tic tac toe board">
+        <div class="container">
+          <div class="game" id="board">
+            <!-- 12 boxes -->
+            <button
+              class="box"
+              data-index="0"
+              aria-label="cell 0"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="1"
+              aria-label="cell 1"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="2"
+              aria-label="cell 2"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="3"
+              aria-label="cell 3"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="4"
+              aria-label="cell 4"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="5"
+              aria-label="cell 5"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="6"
+              aria-label="cell 6"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="7"
+              aria-label="cell 7"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="8"
+              aria-label="cell 8"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="9"
+              aria-label="cell 9"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="10"
+              aria-label="cell 10"
+              type="button"
+            ></button>
+            <button
+              class="box"
+              data-index="11"
+              aria-label="cell 11"
+              type="button"
+            ></button>
+          </div>
+        </div>
+      </main>
+
+      <!-- Status / Turn message -->
+      <section class="status" aria-live="polite">
+        <p id="msg" class="msg">Let's Play the Game</p>
+        <div
+          id="turn-indicator"
+          class="turn-indicator"
+          aria-hidden="false"
+        ></div>
+      </section>
+
+      <!-- Restart at bottom -->
+      <footer class="footer">
+        <button id="restart" class="restart-btn" type="button">Restart</button>
+      </footer>
+    </div>
+
+    <!-- Modal popup for winner/draw (Play Again / Restart / Close) -->
+    <div
+      id="result-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal-overlay" data-close="true"></div>
+      <div class="modal-panel" role="document">
+        <h2 id="modal-title">Game Over</h2>
+        <p id="modal-message" class="modal-message">Player X wins</p>
+        <div class="modal-actions">
+          <button id="modal-playagain" class="btn btn-primary">
+            Play Again
+          </button>
+          <button id="modal-restart" class="btn">Restart</button>
+          <button id="modal-close" class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
