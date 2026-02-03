@@ -1,76 +1,386 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tic Tac Toe — 4×8 (32 tiles)</title>
     <link rel="stylesheet" href="style.css" />
-    <title>TIC TAC TOE GAME</title>
   </head>
   <body>
-    <h1>
-      <span>W</span>
-      <span>E</span>
-      <span>L</span>
-      <span>C</span>
-      <span>O</span>
-      <span>M</span>
-      <span>E</span>
-      <span>T</span>
-      <span>O</span>
-      <span>H</span>
-      <span>A</span>
-      <span>R</span>
-      <span>D</span>
-      <span>M</span>
-      <span>O</span>
-      <span>D</span>
-      <span>E</span>
-    </h1>
-    <div class="msg-container">
-      <p id="msg">Let's Play the Game</p>
-    </div>
-    <div>
-      <button>Player X</button>
-      <button>Player 0</button>
-    </div>
-    <div class="container">
-      <div class="game">
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
-        <button class="box"></button>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <h1 class="site-title">THE TIC TAC TOE GAME</h1>
+        <h2 class="bounce-title" aria-hidden="true">
+          <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span>
+          <span>M</span><span>E</span><span>!</span>
+        </h2>
+      </div>
+    </header>
+
+    <main id="main" class="main" role="main">
+      <section class="controls" aria-labelledby="controls-heading">
+        <h3 id="controls-heading" class="sr-only">Game controls</h3>
+
+        <div
+          style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"
+        >
+          <button
+            id="pick-x"
+            class="mode-btn"
+            type="button"
+            aria-pressed="true"
+            title="Play as X"
+            data-mode="pick-x"
+          >
+            Play as X
+          </button>
+          <button
+            id="pick-o"
+            class="mode-btn"
+            type="button"
+            aria-pressed="false"
+            title="Play as O"
+            data-mode="pick-o"
+          >
+            Play as O
+          </button>
+          <button
+            id="restart"
+            class="mode-btn"
+            type="button"
+            title="Restart game"
+          >
+            Restart
+          </button>
+
+          <div
+            id="turn-indicator"
+            style="margin-left: auto; color: var(--muted); font-weight: 600"
+          >
+            Turn: —
+          </div>
+        </div>
+
+        <div
+          class="msg-container"
+          role="status"
+          aria-live="polite"
+          style="margin-top: 0.5rem"
+        >
+          <p id="msg">Let's play the game — pick X or O to begin.</p>
+        </div>
+      </section>
+
+      <section
+        class="board-wrap"
+        aria-labelledby="board-heading"
+        style="width: 100%"
+      >
+        <h3 id="board-heading" class="sr-only">Game board</h3>
+
+        <!-- 4 rows x 8 columns = 32 boxes -->
+        <div
+          class="board"
+          role="grid"
+          aria-label="Tic tac toe board"
+          data-rows="4"
+          data-cols="8"
+        >
+          <!-- generate 32 boxes (0..31) -->
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 1"
+            data-index="0"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 2"
+            data-index="1"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 3"
+            data-index="2"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 4"
+            data-index="3"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 5"
+            data-index="4"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 6"
+            data-index="5"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 7"
+            data-index="6"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 8"
+            data-index="7"
+            aria-pressed="false"
+          ></div>
+
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 9"
+            data-index="8"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 10"
+            data-index="9"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 11"
+            data-index="10"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 12"
+            data-index="11"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 13"
+            data-index="12"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 14"
+            data-index="13"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 15"
+            data-index="14"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 16"
+            data-index="15"
+            aria-pressed="false"
+          ></div>
+
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 17"
+            data-index="16"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 18"
+            data-index="17"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 19"
+            data-index="18"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 20"
+            data-index="19"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 21"
+            data-index="20"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 22"
+            data-index="21"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 23"
+            data-index="22"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 24"
+            data-index="23"
+            aria-pressed="false"
+          ></div>
+
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 25"
+            data-index="24"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 26"
+            data-index="25"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 27"
+            data-index="26"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 28"
+            data-index="27"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 29"
+            data-index="28"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 30"
+            data-index="29"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 31"
+            data-index="30"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 32"
+            data-index="31"
+            aria-pressed="false"
+          ></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Result modal (hidden until a player wins) -->
+    <div
+      id="result-modal"
+      class="modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-message"
+    >
+      <div class="modal-overlay" tabindex="-1"></div>
+      <div class="modal-panel" role="document">
+        <div class="modal-header">
+          <h4 id="modal-message">Result</h4>
+        </div>
+        <div
+          class="modal-actions"
+          style="display: flex; gap: 0.5rem; margin-top: 0.5rem"
+        >
+          <button id="modal-tryagain" class="mode-btn" type="button">
+            Try Again
+          </button>
+          <button id="modal-close" class="mode-btn" type="button">Close</button>
+        </div>
       </div>
     </div>
 
-    <button id="restart">Restart</button>
-    script src="script.js">/script>
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+    <script src="script.js" defer></script>
   </body>
 </html>
