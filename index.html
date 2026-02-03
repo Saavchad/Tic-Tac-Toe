@@ -1,148 +1,216 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>TIC‑TAC‑TOE</title>
+    <title>Tic Tac Toe — Easy Mode</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="page">
-      <!-- Welcome / Title -->
-      <header class="welcome">
-        <h1 class="bounce-title" aria-hidden="true">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header" role="banner">
+      <div class="header-inner">
+        <h1 class="site-title">THE TIC TAC TOE GAME</h1>
+        <h2 class="bounce-title" aria-hidden="true">
           <span>W</span><span>E</span><span>L</span><span>C</span><span>O</span
-          ><span>M</span><span>E</span> <span>T</span><span>O</span>
-          <span>E</span><span>A</span><span>S</span><span>Y</span><span>M</span
-          ><span>O</span><span>D</span><span>E</span>
-        </h1>
-      </header>
+          ><span>M</span><span>E</span><span>!</span>
+        </h2>
+      </div>
+    </header>
 
-      <!-- Player pick -->
-      <section class="player-select" aria-label="Player selection">
-        <p class="select-label">Choose your side:</p>
-        <div class="select-buttons">
-          <button id="pick-x" class="pick-btn" type="button">Player X</button>
-          <button id="pick-o" class="pick-btn" type="button">Player O</button>
-        </div>
-      </section>
+    <main id="main" class="main" role="main">
+      <section class="controls" aria-labelledby="controls-heading">
+        <h3 id="controls-heading" class="sr-only">Game controls</h3>
 
-      <!-- Game board -->
-      <main class="board-area" aria-label="Tic tac toe board">
-        <div class="container">
-          <div class="game" id="board">
-            <!-- 12 boxes -->
-            <button
-              class="box"
-              data-index="0"
-              aria-label="cell 0"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="1"
-              aria-label="cell 1"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="2"
-              aria-label="cell 2"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="3"
-              aria-label="cell 3"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="4"
-              aria-label="cell 4"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="5"
-              aria-label="cell 5"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="6"
-              aria-label="cell 6"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="7"
-              aria-label="cell 7"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="8"
-              aria-label="cell 8"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="9"
-              aria-label="cell 9"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="10"
-              aria-label="cell 10"
-              type="button"
-            ></button>
-            <button
-              class="box"
-              data-index="11"
-              aria-label="cell 11"
-              type="button"
-            ></button>
+        <div
+          style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap"
+        >
+          <button
+            id="pick-x"
+            class="mode-btn"
+            type="button"
+            aria-pressed="true"
+            title="Play as X"
+            data-mode="pick-x"
+          >
+            Play as X
+          </button>
+          <button
+            id="pick-o"
+            class="mode-btn"
+            type="button"
+            aria-pressed="false"
+            title="Play as O"
+            data-mode="pick-o"
+          >
+            Play as O
+          </button>
+          <button
+            id="restart"
+            class="mode-btn"
+            type="button"
+            title="Restart game"
+          >
+            Restart
+          </button>
+
+          <div
+            id="turn-indicator"
+            style="margin-left: auto; color: var(--muted); font-weight: 600"
+          >
+            Turn: —
           </div>
         </div>
-      </main>
 
-      <!-- Status / Turn message -->
-      <section class="status" aria-live="polite">
-        <p id="msg" class="msg">Let's Play the Game</p>
         <div
-          id="turn-indicator"
-          class="turn-indicator"
-          aria-hidden="false"
-        ></div>
+          class="msg-container"
+          role="status"
+          aria-live="polite"
+          style="margin-top: 0.5rem"
+        >
+          <p id="msg">Let's play the game — pick a difficulty to begin.</p>
+        </div>
       </section>
 
-      <!-- Restart at bottom -->
-      <footer class="footer">
-        <button id="restart" class="restart-btn" type="button">Restart</button>
-      </footer>
-    </div>
+      <section
+        class="board-wrap"
+        aria-labelledby="board-heading"
+        style="width: 100%"
+      >
+        <h3 id="board-heading" class="sr-only">Game board</h3>
 
-    <!-- Modal popup for winner/draw (Play Again / Restart / Close) -->
+        <div
+          class="board"
+          role="grid"
+          aria-label="Tic tac toe board"
+          data-rows="3"
+          data-cols="4"
+        >
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 1"
+            data-index="0"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 2"
+            data-index="1"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 3"
+            data-index="2"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 4"
+            data-index="3"
+            aria-pressed="false"
+          ></div>
+
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 5"
+            data-index="4"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 6"
+            data-index="5"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 7"
+            data-index="6"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 8"
+            data-index="7"
+            aria-pressed="false"
+          ></div>
+
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 9"
+            data-index="8"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 10"
+            data-index="9"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 11"
+            data-index="10"
+            aria-pressed="false"
+          ></div>
+          <div
+            class="box"
+            role="button"
+            tabindex="0"
+            aria-label="Cell 12"
+            data-index="11"
+            aria-pressed="false"
+          ></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Result modal (hidden until a player wins) -->
     <div
       id="result-modal"
       class="modal"
+      aria-hidden="true"
       role="dialog"
       aria-modal="true"
-      aria-hidden="true"
-      aria-labelledby="modal-title"
+      aria-labelledby="modal-message"
     >
-      <div class="modal-overlay" data-close="true"></div>
+      <div class="modal-overlay" tabindex="-1"></div>
       <div class="modal-panel" role="document">
-        <h2 id="modal-title">Game Over</h2>
-        <p id="modal-message" class="modal-message">Player X wins</p>
-        <div class="modal-actions">
-          <button id="modal-playagain" class="btn btn-primary">
-            Play Again
+        <div class="modal-header">
+          <h4 id="modal-message">Result</h4>
+        </div>
+        <div
+          class="modal-actions"
+          style="display: flex; gap: 0.5rem; margin-top: 0.5rem"
+        >
+          <button id="modal-tryagain" class="mode-btn" type="button">
+            Try Again
           </button>
-          <button id="modal-restart" class="btn">Restart</button>
-          <button id="modal-close" class="btn">Close</button>
+          <button id="modal-close" class="mode-btn" type="button">Close</button>
         </div>
       </div>
     </div>
@@ -153,3 +221,4 @@
     <script src="script.js" defer></script>
   </body>
 </html>
+
